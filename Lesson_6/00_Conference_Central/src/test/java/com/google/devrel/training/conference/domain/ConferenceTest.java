@@ -94,7 +94,7 @@ public class ConferenceTest {
 
     @Test
     public void testGetOrganizerDisplayName() throws Exception {
-        String displayName = "Udacity Student";
+        String displayName = "Takashi Matsuo";
         Profile profile = new Profile(ORGANIZER_USER_ID, displayName, "", null);
         ofy().save().entity(profile).now();
         Conference conference = new Conference(ID, ORGANIZER_USER_ID, conferenceForm);
@@ -117,7 +117,6 @@ public class ConferenceTest {
         conference.bookSeats(1);
     }
 
-    /*
     @Test
     public void testReturnSeats() throws Exception {
         Conference conference = new Conference(ID, ORGANIZER_USER_ID, conferenceForm);
@@ -126,13 +125,10 @@ public class ConferenceTest {
         conference.giveBackSeats(1);
         assertEquals(CAP, conference.getSeatsAvailable());
     }
-    */
 
-    /*
     @Test(expected = IllegalArgumentException.class)
     public void testReturnSeatsFailure() throws Exception {
         Conference conference = new Conference(ID, ORGANIZER_USER_ID, conferenceForm);
         conference.giveBackSeats(1);
     }
-    */
 }

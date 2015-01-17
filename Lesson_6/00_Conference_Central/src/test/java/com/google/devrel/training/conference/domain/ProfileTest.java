@@ -19,13 +19,13 @@ import java.util.List;
  */
 public class ProfileTest {
 
-    private static final String EMAIL = "example@gmail.com";
+    private static final String EMAIL = "testuser@example.com";
 
     private static final String USER_ID = "123456789";
 
     private static final TeeShirtSize TEE_SHIRT_SIZE = TeeShirtSize.M;
 
-    private static final String DISPLAY_NAME = "Your Name Here";
+    private static final String DISPLAY_NAME = "Test User";
 
     private Profile profile;
 
@@ -54,7 +54,7 @@ public class ProfileTest {
 
     @Test
     public void testUpdate() throws Exception {
-        String newDisplayName = "New Display Name";
+        String newDisplayName = "Kay's Daddy";
         TeeShirtSize newTeeShirtSize = TeeShirtSize.M;
         profile.update(newDisplayName, newTeeShirtSize);
         assertEquals(USER_ID, profile.getUserId());
@@ -63,7 +63,6 @@ public class ProfileTest {
         assertEquals(newTeeShirtSize, profile.getTeeShirtSize());
     }
 
-    /*
     @Test
     public void testListValues() throws Exception {
         List<String> conferenceKeys = new ArrayList<>();
@@ -73,5 +72,4 @@ public class ProfileTest {
         conferenceKeys.add(conferenceKey.getString());
         assertEquals(conferenceKeys, profile.getConferenceKeysToAttend());
     }
-    */
 }

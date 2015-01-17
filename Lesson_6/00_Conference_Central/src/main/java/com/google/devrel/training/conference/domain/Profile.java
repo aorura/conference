@@ -1,26 +1,39 @@
 package com.google.devrel.training.conference.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.google.common.collect.ImmutableList;
 import com.google.devrel.training.conference.form.ProfileForm.TeeShirtSize;
-import com.googlecode.objectify.annotation.Cache;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 
+import java.util.ArrayList;
+import java.util.List;
 
-// TODO indicate that this class is an Entity
+/**
+ * Profile class stores user's profile data.
+ */
 @Entity
-@Cache
-
 public class Profile {
-    String displayName;
-    String mainEmail;
-    TeeShirtSize teeShirtSize;
+    /**
+     *  Use userId as the datastore key.
+     */
+    @Id
+    private String userId;
 
-    // TODO indicate that the userId is to be used in the Entity's key
-    @Id String userId;
+    /**
+     * Any string user wants us to display him/her on this system.
+     */
+    private String displayName;
+
+    /**
+     * User's main e-mail address.
+     */
+    private String mainEmail;
+
+    /**
+     * The user's tee shirt size.
+     * Options are defined as an Enum in ProfileForm
+     */
+    private TeeShirtSize teeShirtSize;
 
     /**
      * Keys of the conferences that this user registers to attend.
@@ -28,34 +41,54 @@ public class Profile {
     private List<String> conferenceKeysToAttend = new ArrayList<>(0);
 
     /**
+     * Just making the default constructor private.
+     */
+    private Profile() {}
+
+    /**
      * Public constructor for Profile.
-     * @param userId The user id, obtained from the email
+     * @param userId The datastore key.
      * @param displayName Any string user wants us to display him/her on this system.
      * @param mainEmail User's main e-mail address.
-     * @param teeShirtSize The User's tee shirt size
-     *
+     * @param teeShirtSize User's teeShirtSize (Enum is in ProfileForm)
      */
-    public Profile (String userId, String displayName, String mainEmail, TeeShirtSize teeShirtSize) {
+    public Profile(String userId, String displayName, String mainEmail, TeeShirtSize teeShirtSize) {
         this.userId = userId;
         this.displayName = displayName;
         this.mainEmail = mainEmail;
         this.teeShirtSize = teeShirtSize;
     }
 
+    /**
+     * Getter for userId.
+     * @return userId.
+     */
+    public String getUserId() {
+        return userId;
+    }
+
+    /**
+     * Getter for displayName.
+     * @return displayName.
+     */
     public String getDisplayName() {
         return displayName;
     }
 
+    /**
+     * Getter for mainEmail.
+     * @return mainEmail.
+     */
     public String getMainEmail() {
         return mainEmail;
     }
 
+    /**
+     * Getter for teeShirtSize.
+     * @return teeShirtSize.
+     */
     public TeeShirtSize getTeeShirtSize() {
         return teeShirtSize;
-    }
-
-    public String getUserId() {
-        return userId;
     }
 
     /**
@@ -67,13 +100,7 @@ public class Profile {
     }
 
     /**
-     * Just making the default constructor private.
-     */
-    private Profile() {}
-
-    /**
      * Update the Profile with the given displayName and teeShirtSize
-     *
      * @param displayName
      * @param teeShirtSize
      */
@@ -110,5 +137,4 @@ public class Profile {
             throw new IllegalArgumentException("Invalid conferenceKey: " + conferenceKey);
         }
     }
-
 }
